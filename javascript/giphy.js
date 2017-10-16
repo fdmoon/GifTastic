@@ -27,7 +27,6 @@ $(document).ready(function() {
 
 		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + food + "&limit=10&g=pg+g&api_key=dc6zaTOxFJmzC";
 
-		// Creates AJAX call for the specific movie button being clicked
 		$.ajax({
 			url: queryURL,
 			method: "GET"
@@ -39,17 +38,16 @@ $(document).ready(function() {
 			var img;
 
 			for(var i=0; i<data.length; i++) {
-				div = $("<div>");
-				div.append("Rating: " + data[i].rating + "<br>");
+				div = $("<div class='food-img'>");
+				div.append("<strong>Rating: " + data[i].rating + "</strong><br>");
 
 				img = $("<img class='giphy' data-state='still'>");
 				img.attr({
-					"src": data[i].images.fixed_height_small_still.url,
-					"data-still": data[i].images.fixed_height_small_still.url,
-					"data-animate": data[i].images.fixed_height_small.url
+					"src": data[i].images.fixed_height_still.url,
+					"data-still": data[i].images.fixed_height_still.url,
+					"data-animate": data[i].images.fixed_height.url
 				});
 				div.append(img);
-				// div.append("<br>");
 
 				$("#food-view").append(div);
 			}
