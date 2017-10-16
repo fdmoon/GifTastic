@@ -1,0 +1,16 @@
+* {
+	box-sizing: border-box;
+}
+
+#button-view {
+	margin: 15px 0;
+}
+
+.food {
+	margin: 5px 10px;
+}
+
+#food-view {
+	display: inline;
+}
+
