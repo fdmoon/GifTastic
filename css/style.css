@@ -2,21 +2,29 @@
 	box-sizing: border-box;
 }
 
+header {
+	font-family: 'Modak', cursive;
+	font-size: 60px;
+	margin: 0 20px;
+}
+
 .content {
 	margin: 0 20px;
 }
 
-#button-view {
-	margin: 15px 0;
+.food-list {
+	background-color: #eee;
+	padding: 20px 0;
+	margin: 5px 0 15px 0;
 }
 
-.food {
+.food-btn {
 	margin: 5px 10px;
 }
 
 .food-img {
     float: left;
-    padding: 0 15px;
+    padding: 0 15px 30px 15px;
 }
 
 .clearfix::after {

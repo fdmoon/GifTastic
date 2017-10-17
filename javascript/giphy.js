@@ -1,14 +1,22 @@
 $(document).ready(function() {
-	var foodGroup = ["Biscuit", "Bread", "Baked potato", "Buffalo wing", "Chicken nugget", "Corn dog", "Doughnut", "Fajita", "Hamburger", "Ice cream cake", "Onion ring", "Oreo", "Pancakes", "Pizza", "Pumpkin pie", "Ribs", "Waffle"];
+	var foodGroup = ["bread", "fries", "buffalo wing", "chicken nugget", "corn dog", "doughnut", "fajita", "hamburger", "ice cream cake", "onion ring", "oreo", "pancakes", "pizza", "pumpkin pie", "ribs", "sandwich", "waffle", "bibimbap"];
+
+	var curButtonId = "";
 
 	function renderButtons() {
 		$("#button-view").empty();
 
 		for (var i = 0; i < foodGroup.length; i++) {
 			var btn = $("<button type='button' class='btn btn-info'>");
-			btn.addClass("food");
+			btn.addClass("food-btn");
+			btn.attr("id", "item"+(i+1));
 			btn.attr("data-name", foodGroup[i]);
 			btn.text(foodGroup[i]);
+
+			if(curButtonId === btn.attr("id")) {
+				btn.addClass("btn-danger");
+			}
+
 			$("#button-view").append(btn);
 		}
 	}
@@ -19,13 +27,23 @@ $(document).ready(function() {
 		var food = $("#food-input").val().trim();
 		foodGroup.push(food);
 
+		$("#food-input").val("");
+
 		renderButtons();
 	});
 
-	$(document).on("click", ".food", function() {
+	$(document).on("click", ".food-btn", function() {
+		curButtonId = $(this).attr("id");
+
+		for (var i = 0; i < foodGroup.length; i++) {
+			$("#button-view").children().eq(i).removeClass("btn-danger");
+		}
+		$(this).addClass("btn-danger");
+
+
 		var food = $(this).attr("data-name");
 
-		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + food + "&limit=10&g=pg+g&api_key=dc6zaTOxFJmzC";
+		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + food + "&limit=10&rating=pg-13&api_key=LIbNaEBuTfqucbor28clE97pSNU26jUV";
 
 		$.ajax({
 			url: queryURL,
@@ -71,4 +89,3 @@ $(document).ready(function() {
 	renderButtons();
 });
 
-	
